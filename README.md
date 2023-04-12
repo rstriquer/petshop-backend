@@ -9,7 +9,7 @@ Licence: [MIT](https://choosealicense.com/licenses/mit/)
 ## Used Stack
 
 -   **Back-end:** Laravel 10
--   **Infrastructure:** Docker 20, Mysql 5.7, php 8.1
+-   **Infrastructure:** Docker 20, Mysql 5.7, php 8.2
 
 ## Install
 
