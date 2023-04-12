@@ -1,0 +1,30 @@
+version: '3.7'
+
+networks:
+  local-vpc:
+    driver: bridge
+
+volumes:
+  database:
+   driver: local
+
+services:
+
+  database: # Represents RDS services
+    # to configure the user run ...
+    # mysql -h 127.0.0.1 --port 3301 -u root -p12345678 -e "CREATE DATABASE petshop_dev; GRANT ALL PRIVILEGES ON petshop_dev.* TO 'petshop'@'%' IDENTIFIED BY '12345678'; FLUSH PRIVILEGES;"
+    image: mysql:5.7
+    networks:
+      - local-vpc
+    environment:
+      - MYSQL_DATABASE:${DB_DATABASE:-petshop_dev}
+      - MYSQL_USER=${DB_USERNAME:-petshop}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-12345678}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-12345678}
+      - LANG=C.UTF_8
+      - TZ=${DB_TIMEZONE:-America/Sao_Paulo}
+    volumes:
+      - ${DB_DATA_PATH:-./storage/docker}/mysql:/var/lib/mysql
+    ports:
+      - "${DB_PORT:-3301}:3306"
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--skip-character-set-client-handshake']
