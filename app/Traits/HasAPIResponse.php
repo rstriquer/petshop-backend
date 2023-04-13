@@ -38,36 +38,6 @@ trait HasAPIResponse
         return response()->json($mask->transform($payload), Response::HTTP_OK);
     }
     /**
-     * Reply 204 HTTP_NO_CONTENT
-     * - Should be used for empty lists, delete action and whenever we need no
-     * content on response body.
-     */
-    public function replyNoContent() : Response
-    {
-        return response(null, Response::HTTP_NO_CONTENT);
-    }
-    /**
-     * Reply 404 HTTP_NOT_FOUND
-     */
-    public function replyNotFound() : Response
-    {
-        return response(null, Response::HTTP_NOT_FOUND);
-    }
-    /**
-     * Reply 500 HTTP_INTERNAL_SERVER_ERROR
-     * @param array<int, string> $messages The complementary error messages which will be passed to content return.
-     */
-    public function replyServerError(array $messages = null) : Response
-    {
-        if ($messages !== null) {
-            return response()->json(
-                ['message' => $messages],
-                Response::HTTP_INTERNAL_SERVER_ERROR
-            );
-        }
-        return response(null, Response::HTTP_INTERNAL_SERVER_ERROR);
-    }
-    /**
      * Reply 201 HTTP_CREATED telling the item was created successfully
      * @param array<int, string> $messages The complementary error messages which will be passed to content return.
      */
@@ -95,6 +65,15 @@ trait HasAPIResponse
             );
         }
         return response(null, Response::HTTP_ACCEPTED);
+    }
+    /**
+     * Reply 204 HTTP_NO_CONTENT
+     * - Should be used for empty lists, delete action and whenever we need no
+     * content on response body.
+     */
+    public function replyNoContent() : Response
+    {
+        return response(null, Response::HTTP_NO_CONTENT);
     }
     /**
      * Reply 401 HTTP_UNAUTHORIZED
@@ -125,6 +104,13 @@ trait HasAPIResponse
         return response(null, Response::HTTP_FORBIDDEN);
     }
     /**
+     * Reply 404 HTTP_NOT_FOUND
+     */
+    public function replyNotFound() : Response
+    {
+        return response(null, Response::HTTP_NOT_FOUND);
+    }
+    /**
      * Reply 422 HTTP_UNPROCESSABLE_ENTITY
      * - Describe user error when trying to submit a somehow incorrect payload to server;
      * @param array<int, string> $messages The complementary error messages which will be passed to content return.
@@ -138,5 +124,19 @@ trait HasAPIResponse
             );
         }
         return response(null, Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+    /**
+     * Reply 500 HTTP_INTERNAL_SERVER_ERROR
+     * @param array<int, string> $messages The complementary error messages which will be passed to content return.
+     */
+    public function replyServerError(array $messages = null) : Response
+    {
+        if ($messages !== null) {
+            return response()->json(
+                ['message' => $messages],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+        return response(null, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
