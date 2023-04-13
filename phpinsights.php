@@ -50,10 +50,10 @@ return [
     ],
 
     'requirements' => [
-        'min-quality' => 75,
-        'min-complexity' => 75,
-        'min-architecture' => 75,
-        'min-style' => 75,
+        'min-quality' => 85,
+        'min-complexity' => 85,
+        'min-architecture' => 85,
+        'min-style' => 85,
         'disable-security-check' => false,
     ],
 ];
