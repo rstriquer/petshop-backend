@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Http\Controllers\Controller;
+use \Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use \Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,5 +47,27 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e)
+    {
+        switch (get_class($e)) {
+            case 'RecordsNotFoundException':
+            case 'ModelNotFoundException':
+                return app(Controller::class)->replyNotFound();
+            case 'AuthenticationException':
+                Log::info($e->getMessage());
+                return app(Controller::class)->replyForbidden();
+            case 'AuthorizationException':
+                Log::notice($e->getMessage());
+                return app(Controller::class)->replyUnauthorized();
+        }
+
+        if ($e instanceof Exception) {
+            Log::error($e->getMessage());
+            return app(Controller::class)->replyUnauthorized();
+        }
+
+        return parent::render($request, $e);
     }
 }
