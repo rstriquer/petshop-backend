@@ -5,6 +5,11 @@ namespace App\Exceptions;
 use App\Http\Controllers\Controller;
 use \Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\RecordsNotFoundException;
 use \Log;
 use Throwable;
 
@@ -51,21 +56,23 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        switch (get_class($e)) {
-            case 'RecordsNotFoundException':
-            case 'ModelNotFoundException':
-                return app(Controller::class)->replyNotFound();
-            case 'AuthenticationException':
-                Log::info($e->getMessage());
-                return app(Controller::class)->replyForbidden();
-            case 'AuthorizationException':
-                Log::notice($e->getMessage());
-                return app(Controller::class)->replyUnauthorized();
-        }
-
         if ($e instanceof Exception) {
-            Log::error($e->getMessage());
-            return app(Controller::class)->replyUnauthorized();
+            switch (get_class($e)) {
+                case ValidationException::class:
+                    break;
+                case RecordsNotFoundException::class:
+                case ModelNotFoundException::class:
+                    return app(Controller::class)->replyNotFound();
+                case AuthenticationException::class:
+                    Log::info($e->getMessage());
+                    break;
+                case AuthorizationException::class:
+                    Log::notice($e->getMessage());
+                    break;
+                default:
+                    Log::error(get_class($e) . ' ' . $e->getMessage());
+                    return app(Controller::class)->replyUnauthorized();
+            }
         }
 
         return parent::render($request, $e);
