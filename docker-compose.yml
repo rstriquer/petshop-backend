@@ -28,3 +28,17 @@ services:
     ports:
       - "${DB_PORT:-3301}:3306"
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--skip-character-set-client-handshake']
+
+  application:
+    image: rstriquer/php-fpm.dev:8.2-dev
+    # image: laravelphp/vapor:php82
+    networks:
+      - local-vpc
+    ports:
+      - "${SERVER_PORT:-9000}:9000"
+      - "${SERVER_PORT:-9003}:9003"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ${SERVER_HOME:-./}:/var/www/html
+    command: php artisan serv --host=0.0.0.0 --port=9000

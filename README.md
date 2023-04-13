@@ -9,7 +9,10 @@ Licence: [MIT](https://choosealicense.com/licenses/mit/)
 ## Used Stack
 
 -   **Back-end:** Laravel 10
--   **Infrastructure:** Docker 20, Mysql 5.7, php 8.2
+-   **Infrastructure:** Docker 20
+
+Docker will download and instantiate a Mysql 5.7 and a php 8.2 container into
+your environment
 
 ## Install
 
