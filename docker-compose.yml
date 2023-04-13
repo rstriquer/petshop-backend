@@ -31,7 +31,6 @@ services:
 
   application:
     image: rstriquer/php-fpm.dev:8.2-dev
-    # image: laravelphp/vapor:php82
     networks:
       - local-vpc
     ports:
@@ -40,5 +39,5 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ${SERVER_HOME:-./}:/var/www/html
+      - ${SERVER_HOME:-./}:/var/www/
     command: php artisan serv --host=0.0.0.0 --port=9000
