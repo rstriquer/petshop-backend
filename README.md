@@ -12,7 +12,13 @@ Licence: [MIT](https://choosealicense.com/licenses/mit/)
 -   **Infrastructure:** Docker 20
 
 Docker will download and instantiate a Mysql 5.7 and a php 8.2 container into
-your environment
+your environment.
+
+It uses a [rstriquer/php-fpm.dev](https://hub.docker.com/r/rstriquer/php-fpm.dev)
+docker image hosted at [hub.docker.com](https://hub.docker.com). It should work
+out of the box but if needed you can find the Dockerfile in the
+[php-fpm.dev github repository](https://github.com/rstriquer/docker-dev.php-fpm/tree/8.2-dev)
+and build it as instructed there.
 
 ## Install
 
