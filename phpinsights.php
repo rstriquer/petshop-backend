@@ -6,7 +6,8 @@ return [
     'ide' => 'phpstorm',
 
     'exclude' => [
-        'app/Providers',
+        '_ide_helper.php',
+        'vendor/*',
     ],
 
     'add' => [],
