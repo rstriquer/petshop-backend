@@ -55,6 +55,9 @@
         "check-build": [
             "./vendor/bin/phpstan analyse --memory-limit 2G",
             "./vendor/bin/phpinsights --summary"
+        ],
+        "unit-test": [
+            "time php -dxdebug.mode=coverage,develop -dmemory_limit=8192M vendor/bin/phpunit -c phpunit.xml  --coverage-html ./storage/phpunit/html"
         ]
     },
     "extra": {
