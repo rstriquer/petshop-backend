@@ -50,3 +50,16 @@ composer install
 ```
 
 If you whish you can populate the database with some lines with the seeder running `./artisan db:seed`
+
+## Run
+
+After you have installed the application you can just start the docker container
+and get it going with a
+[postman collection](https://www.c-sharpcorner.com/article/import-swagger-apis-into-postman-collection/)
+or even with curl command right from the browser accessing the project swagger
+documentation on
+"[http://127.0.0.1:9000/api/documentation](http://127.0.0.1:9000/api/documentation)"
+.
+
+And since you will have seeded data you can use the "`admin@mail.com`" user
+with the "`12345678`" password to start playing around with the application
