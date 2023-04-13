@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d8446b6f44e2de7010c5079f3ff5880",
+    "content-hash": "37ebf4b75474e0087a4bb97c4214843f",
     "packages": [
         {
             "name": "brick/math",
@@ -10781,6 +10781,53 @@
                 }
             ],
             "time": "2023-03-14T15:48:45+00:00"
+        },
+        {
+            "name": "theanik/laravel-more-command",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/theanik/laravel-more-command.git",
+                "reference": "a6c4144c5ca7839cce7fd969bcffb9181c1e088e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/theanik/laravel-more-command/zipball/a6c4144c5ca7839cce7fd969bcffb9181c1e088e",
+                "reference": "a6c4144c5ca7839cce7fd969bcffb9181c1e088e",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Theanik\\LaravelMoreCommand\\LaravelMoreCommandProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Theanik\\LaravelMoreCommand\\": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anwar Hossain Anik",
+                    "email": "anwar.anik33@gmail.com"
+                }
+            ],
+            "description": "Create a Repository and Service class and trait using Artisan CLI",
+            "support": {
+                "issues": "https://github.com/theanik/laravel-more-command/issues",
+                "source": "https://github.com/theanik/laravel-more-command/tree/v1.3.0"
+            },
+            "time": "2022-02-21T16:53:24+00:00"
         },
         {
             "name": "theseer/tokenizer",
